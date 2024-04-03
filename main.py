@@ -1,16 +1,21 @@
-# This is a sample Python script.
+import json
+import os
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import weather
 
 
-# Press the green button in the gutter to run the script.
+def initialise_config(path: str) -> dict:
+    try:
+        with open(path, "r") as f:
+            config = json.loads(f.read())
+    except Exception as e:
+        print(f"Unable to initialise project {e}.")
+        exit(1)
+    return config
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    config = initialise_config("config.json")
+    key = os.environ["weather_api_key"]
+    weather_dict = weather.get_current_weather(url=config['url'], key=key, city="London")
+    print(json.dumps(weather_dict, indent=4))
