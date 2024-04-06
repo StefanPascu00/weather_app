@@ -16,3 +16,6 @@ def get_current_weather(url: str, key: str, city: str = "Bucuresti"):
                             f"Message: {response.text}")
     except Exception as e:
         print(e)
+
+
+
