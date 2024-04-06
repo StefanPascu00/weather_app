@@ -30,6 +30,6 @@ if __name__ == '__main__':
     clock = str(weather_dict['location']['localtime'])
 
     print(weather_dict['location']['name'], weather_dict['location']['country'] + "\n",
-          clock[10:(len(clock) - 1)] + "\n", str(weather_dict['current']['temp_c']) + " c",
+          clock[10:(len(clock))] + "\n", str(weather_dict['current']['temp_c']) + " c",
           symbol)
 
